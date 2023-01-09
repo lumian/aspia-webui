@@ -402,7 +402,7 @@ class Admin extends CI_Controller {
 	
 	public function packages($type=NULL, $unit=NULL)
 	{
-		$this->title = ' - Пакеты';
+		$this->title = ' - Компоненты';
 		
 		if (is_null($type))
 		{
@@ -425,27 +425,27 @@ class Admin extends CI_Controller {
 					if (is_array($this->aspia_model->get_package_info('name', $post_data['package_name'])))
 					{
 						$this->session->set_flashdata('notice_success', FALSE);
-						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не добавлен в базу данных. Такое имя пакета уже есть в базе. Проверьте ввод и повторите попытку.');
+						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не добавлен в базу данных. Такое имя компонента уже есть в базе. Проверьте ввод и повторите попытку.');
 					}
 					else
 					{
 						$query = $this->aspia_model->add_package($post_data);
 						if ($query != FALSE)
 						{
-							$this->session->set_flashdata('notice_success', 'Пакет успешно добавлен в базу данных.');
+							$this->session->set_flashdata('notice_success', 'Компонент успешно добавлен в базу данных.');
 							$this->session->set_flashdata('notice_error', FALSE);
 						}
 						else
 						{
 							$this->session->set_flashdata('notice_success', FALSE);
-							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не добавлен в базу данных.');
+							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не добавлен в базу данных.');
 						}
 					}
 				}
 				else
 				{
 					$this->session->set_flashdata('notice_success', FALSE);
-					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не добавлен в базу данных. Не переданы обязательные поля.');
+					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не добавлен в базу данных. Не переданы обязательные поля.');
 				}
 				redirect('admin/packages');
 			}
@@ -470,7 +470,7 @@ class Admin extends CI_Controller {
 					if (is_array($check) AND $check['package_id'] != $unit)
 					{
 						$this->session->set_flashdata('notice_success', FALSE);
-						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не отредактирован. Такое имя пакета уже есть в базе. Проверьте ввод и повторите попытку.');
+						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не отредактирован. Такое имя компонента уже есть в базе. Проверьте ввод и повторите попытку.');
 					}
 					else
 					{
@@ -478,20 +478,20 @@ class Admin extends CI_Controller {
 						
 						if ($query != FALSE)
 						{
-							$this->session->set_flashdata('notice_success', 'Пакет успешно отредактирован.');
+							$this->session->set_flashdata('notice_success', 'Компонент успешно отредактирован.');
 							$this->session->set_flashdata('notice_error', FALSE);
 						}
 						else
 						{
 							$this->session->set_flashdata('notice_success', FALSE);
-							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не отредактирован.');
+							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не отредактирован.');
 						}
 					}
 				}
 				else
 				{
 					$this->session->set_flashdata('notice_success', FALSE);
-					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не обновлен. Не переданы обязательные поля.');
+					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не обновлен. Не переданы обязательные поля.');
 				}
 				redirect('admin/packages');
 			}
@@ -510,27 +510,27 @@ class Admin extends CI_Controller {
 				if (is_array($updates_list) AND count($updates_list) > 0)
 				{
 					$this->session->set_flashdata('notice_success', FALSE);
-					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Запрошенный пакет не может быть удален, т.к. есть обновления, ссылающиеся на этот пакет. Удалите обновления и попробуйте снова.');
+					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Запрошенный компонент не может быть удален, т.к. есть обновления, ссылающиеся на этот компонент. Удалите обновления и попробуйте снова.');
 				}
 				else
 				{
 					$result = $this->aspia_model->del_package($unit);
 					if ($result)
 					{
-						$this->session->set_flashdata('notice_success', 'Пакет успешно удален.');
+						$this->session->set_flashdata('notice_success', 'Компонент успешно удален.');
 						$this->session->set_flashdata('notice_error', FALSE);
 					}
 					else
 					{
 						$this->session->set_flashdata('notice_success', FALSE);
-						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Пакет не удален из базы данных.');
+						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Компонент не удален из базы данных.');
 					}
 				}
 			}
 			else
 			{
 				$this->session->set_flashdata('notice_success', FALSE);
-				$this->session->set_flashdata('notice_error', 'Произошла ошибка. Запрошенный пакет не найден в базе данных.');
+				$this->session->set_flashdata('notice_error', 'Произошла ошибка. Запрошенный компонент не найден в базе данных.');
 			}
 			redirect('admin/packages');
 		}
