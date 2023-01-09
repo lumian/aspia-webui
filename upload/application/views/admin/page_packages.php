@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<h1>Пакеты Aspia</h1>
+<h1>Компоненты Aspia</h1>
 
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAddPackage"><i class="fa-solid fa-plus"></i> Добавить пакет</button>
 
@@ -17,8 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? endif;?>
 
 <div class="alert alert-primary mt-2" role="alert">
-	<? if ($packages_data == FALSE): ?>В базе данных не найдено пакетов Aspia. Пожалуйста, настройте необходимые вам пакеты.<br /><? endif;?>
-	По-умолчанию, Aspia использует следующие идентификаторы пакетов:
+	<? if ($packages_data == FALSE): ?>В базе данных не найдено компонентов Aspia. Пожалуйста, настройте необходимые вам пакеты.<br /><? endif;?>
+	По-умолчанию, Aspia использует следующие идентификаторы компонентов:
 	<ul>
 		<li><strong>host</strong> - Aspia Host
 		<li><strong>client</strong> - Aspia Client
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</table>
 	<? if ($packages_data == FALSE): ?>
 		<div class="alert alert-warning" role="alert">
-			Пакеты отсутствуют
+			Компоненты отсутствуют
 		</div>
 	<? endif; ?>
 </div>
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="ModalAddPackageLabel">Добавление нового пакета</h1>
+				<h1 class="modal-title fs-5" id="ModalAddPackageLabel">Добавление нового компонента</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -88,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="ModalEditPackageLabel">Редактирование пакета</h1>
+				<h1 class="modal-title fs-5" id="ModalEditPackageLabel">Редактирование компонента</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -135,11 +135,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="ModalDelPackageLabel">Удаление пакета</h1>
+				<h1 class="modal-title fs-5" id="ModalDelPackageLabel">Удаление компонента</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				Вы действительно хотите удалить выбранный пакет?
+				Вы действительно хотите удалить выбранный компонент?
 			</div>
 			<div class="modal-footer flex-column border-top-0">
 				<a href="#" type="button" class="btn btn-lg btn-danger w-100 mx-0 mb-2">Удалить</button></a>
