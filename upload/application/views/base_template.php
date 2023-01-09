@@ -82,13 +82,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<? $current_page1 = $this->uri->segment('1'); $current_page2 = $this->uri->segment('2');?>
 					<ul class="navbar-nav me-auto mb-2 mb-md-0">
 						<li class="nav-item">
-							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'updates') ? ' active' : '';?>" href="<?=base_url('admin/updates');?>">Обновления</a>
+							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'updates') ? ' active' : '';?>" href="<?=base_url('admin/updates');?>"><i class="fa-solid fa-box-open"></i> Обновления</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'installers') ? ' active' : '';?>" href="<?=base_url('admin/installers');?>">Инсталляторы</a>
+							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'installers') ? ' active' : '';?>" href="<?=base_url('admin/installers');?>"><i class="fa-solid fa-download"></i> Инсталляторы</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'packages') ? ' active' : '';?>" href="<?=base_url('admin/packages');?>">Пакеты</a>
+							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'packages') ? ' active' : '';?>" href="<?=base_url('admin/packages');?>"><i class="fa-solid fa-cubes"></i> Пакеты</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="https://it-35.ru/tags/aspia/" target="_blank"><i class="fa-solid fa-circle-info"></i> Нужна помощь?</a>
 						</li>
 					</ul>
 					<div class="d-flex">

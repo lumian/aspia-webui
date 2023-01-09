@@ -8,6 +8,16 @@ class Auth extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		
+		if ($this->config->item('system_installed', 'aspia'))
+		{
+			$this->load->database();
+			$this->load->library('session');
+		}
+		else
+		{
+			redirect('installer');
+		}
 	}
 	
 	private function _RenderPage()
@@ -20,7 +30,7 @@ class Auth extends CI_Controller {
 	
 	public function index()
 	{
-		redirect('/auth/login/');
+		redirect('auth/login/');
 	}
 	
 	public function login()
@@ -80,11 +90,11 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('/auth/login/');
+		redirect('auth/login');
 	}
 	
 	private function _auth_true()
 	{
-		redirect('/admin/');
+		redirect('admin');
 	}
 }

@@ -16,6 +16,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 <? endif;?>
 
+<div class="alert alert-primary mt-2" role="alert">
+	<? if ($installers_data == FALSE): ?>В базе данных не найдено инсталляторов Aspia. Пожалуйста, настройте необходимые вам инсталляторы.<br /><? endif;?>
+	Оригинальные пакеты MSI, вы можете скачать в <a href="https://github.com/dchapyshev/aspia/releases/" target="_blank">официальном репозитории Aspia на Github</a>.
+</div>
+
 <div class="table-responsive mt-3">
 	<table class="table table-sm table-hover table-bordered">
 		<thead>
@@ -45,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</table>
 	<? if ($installers_data == FALSE): ?>
 		<div class="alert alert-warning" role="alert">
-			Инсталляторов не найдено в базе данных.
+			Инсталляторы отсутствуют
 		</div>
 	<? endif; ?>
 </div>

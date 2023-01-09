@@ -11,6 +11,16 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		
+		if ($this->config->item('system_installed', 'aspia'))
+		{
+			$this->load->database();
+			$this->load->library('session');
+		}
+		else
+		{
+			redirect('installer');
+		}
+		
 		if ($this->session->userdata('login'))
 		{
 			$this->user_info = $this->session->userdata();
@@ -18,7 +28,7 @@ class Admin extends CI_Controller {
 		}
 		else
 		{
-			redirect('/auth/login');
+			redirect('auth/login');
 		}
 	}
 	
@@ -120,7 +130,7 @@ class Admin extends CI_Controller {
 	
 	public function index()
 	{
-		redirect('/admin/updates/');
+		redirect('admin/updates');
 	}
 	
 	public function updates($type=NULL, $unit=NULL)

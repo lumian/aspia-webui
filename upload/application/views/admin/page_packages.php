@@ -16,6 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 <? endif;?>
 
+<div class="alert alert-primary mt-2" role="alert">
+	<? if ($packages_data == FALSE): ?>В базе данных не найдено пакетов Aspia. Пожалуйста, настройте необходимые вам пакеты.<br /><? endif;?>
+	По-умолчанию, Aspia использует следующие идентификаторы пакетов:
+	<ul>
+		<li><strong>host</strong> - Aspia Host
+		<li><strong>client</strong> - Aspia Client
+		<li><strong>console</strong> - Aspia Console
+	</ul>
+</div>
+
 <div class="table-responsive mt-3">
 	<table class="table table-sm table-hover table-bordered">
 		<thead>
@@ -42,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</table>
 	<? if ($packages_data == FALSE): ?>
 		<div class="alert alert-warning" role="alert">
-			Пакетов не найдено в базе данных.
+			Пакеты отсутствуют
 		</div>
 	<? endif; ?>
 </div>

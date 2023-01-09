@@ -93,7 +93,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<label for="FloatingPassword">Password</label>
 				</div>
 				<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-				<p class="mt-5 mb-3 text-muted"><a href="<?=$this->config->item('link_author', 'aspia');?>" target="_blank"><?=$this->config->item('site_title', 'aspia');?></a> &copy; 2022-2023</p>
 			</form>
 		</main>
 	</body>

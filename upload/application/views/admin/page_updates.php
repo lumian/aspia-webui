@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</table>
 	<? if ($updates_data == FALSE): ?>
 		<div class="alert alert-warning" role="alert">
-			Обновлений не найдено в базе данных.
+			Обновления отсутствуют
 		</div>
 	<? endif; ?>
 </div>

@@ -6,7 +6,15 @@ class Update extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('aspia_model');
+		if ($this->config->item('system_installed', 'aspia'))
+		{
+			$this->load->database();
+			$this->load->model('aspia_model');
+		}
+		else
+		{
+			show_404();
+		}
 	}
 	
 	public function Index()
