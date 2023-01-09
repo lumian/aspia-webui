@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <? if (is_array($packages_data) AND count($packages_data) > 0 AND is_array($installers_data) AND count($installers_data) > 0): ?>
 	<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAddUpdate"><i class="fa-solid fa-plus"></i> Добавить обновление</button>
 <? else: ?>
-	<div class="alert alert-primary" role="alert">
+	<div class="alert alert-danger" role="alert">
 		Добавление обновлений недоступно по следующим причинам:
 		<ul>
 			<? if (!is_array($packages_data) OR count($packages_data) == 0): ?>
