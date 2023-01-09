@@ -30,6 +30,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 <? endif;?>
 
+<div class="alert alert-primary mt-2" role="alert">
+	При настройке сервера обновлений Aspia в компонентах Aspia Host, Client, Console используйте следующий URL:
+	<br><?=base_url();?>
+</div>
+
 <div class="table-responsive mt-3">
 	<table class="table table-sm table-hover table-bordered">
 		<thead>
