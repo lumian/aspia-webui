@@ -540,4 +540,17 @@ class Admin extends CI_Controller {
 		}
 		$this->_RenderPage();
 	}
+	
+	public function stats()
+	{
+		$this->title = ' - Статистика';
+		
+		$page_data = array(
+			'stats_data'		=> $this->aspia_model->get_statistics(),
+			'updates_data'		=> $this->aspia_model->get_update_list(),
+		);
+		
+		$this->content = $this->load->view('admin/page_stats', $page_data, TRUE);
+		$this->_RenderPage();
+	}
 }

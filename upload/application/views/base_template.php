@@ -91,6 +91,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'packages') ? ' active' : '';?>" href="<?=base_url('admin/packages');?>"><i class="fa-solid fa-cubes"></i> Компоненты</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link<?=($current_page1 == 'admin' AND $current_page2 == 'stats') ? ' active' : '';?>" href="<?=base_url('admin/stats');?>"><i class="fa-solid fa-chart-line"></i> Статистика</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="https://it-35.ru/tags/aspia/" target="_blank"><i class="fa-solid fa-circle-info"></i> Нужна помощь?</a>
 						</li>
 					</ul>

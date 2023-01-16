@@ -344,4 +344,35 @@ class Aspia_model extends CI_Model {
 		}
 		return FALSE;
 	}
+	
+	//
+	// Statistics
+	//
+	function get_statistics()
+	{
+		$this->db->select('*');
+		$this->db->order_by('stats_timestamp', 'DESC');
+		$this->db->limit('100');
+		$this->db->from('statistics_data');
+		$query = $this->db->get()->result_array();
+		
+		if (count($query) > 0)
+		{
+			return $query;
+		}
+	}
+	
+	function add_statistics($data=NULL)
+	{
+		if (!is_null($data) AND isset($data['stats_query_ip']) AND isset($data['stats_query_packet']) AND isset($data['stats_query_version']))
+		{
+			$this->db->insert('statistics_data', $data);
+			$last_id = $this->db->insert_id();
+			return $last_id;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 }
