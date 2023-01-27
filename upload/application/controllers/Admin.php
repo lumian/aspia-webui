@@ -545,9 +545,20 @@ class Admin extends CI_Controller {
 	{
 		$this->title = ' - Статистика';
 		
+		$page = $this->uri->segment('3') ? $this->uri->segment('3') : 0;
+		
+		$this->load->library('pagination');
+		$pagination = $this->config->item('pagination');
+		$pagination['base_url']			= base_url('admin/stats');
+		$pagination['total_rows']		= $this->aspia_model->get_statistics_count();
+		$pagination['per_page']			= '30';
+		$pagination['uri_segment']		= '3';
+		$this->pagination->initialize($pagination);
+		
 		$page_data = array(
-			'stats_data'		=> $this->aspia_model->get_statistics(),
+			'stats_data'		=> $this->aspia_model->get_statistics(array('limit' => $pagination['per_page'], 'start' => $page)),
 			'updates_data'		=> $this->aspia_model->get_update_list(),
+			'pagination_links'	=> $this->pagination->create_links()
 		);
 		
 		$this->content = $this->load->view('admin/page_stats', $page_data, TRUE);

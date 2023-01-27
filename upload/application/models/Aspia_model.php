@@ -348,18 +348,27 @@ class Aspia_model extends CI_Model {
 	//
 	// Statistics
 	//
-	function get_statistics()
+	function get_statistics($params=NULL)
 	{
-		$this->db->select('*');
-		$this->db->order_by('stats_timestamp', 'DESC');
-		$this->db->limit('100');
-		$this->db->from('statistics_data');
-		$query = $this->db->get()->result_array();
-		
-		if (count($query) > 0)
+		if (isset($params['limit']) AND is_numeric($params['limit']) AND isset($params['start']) AND is_numeric($params['start']))
 		{
-			return $query;
+			$this->db->select('*');
+			$this->db->order_by('stats_timestamp', 'DESC');
+			$this->db->limit($params['limit'], $params['start']);
+			$this->db->from('statistics_data');
+			$query = $this->db->get()->result_array();
+			
+			if (count($query) > 0)
+			{
+				return $query;
+			}
 		}
+	}
+	
+	function get_statistics_count()
+	{
+		$result = $this->db->count_all('statistics_data');
+		return $result;
 	}
 	
 	function add_statistics($data=NULL)

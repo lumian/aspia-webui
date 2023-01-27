@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <h1>Статистика запросов к серверу</h1>
 
+<? if ($pagination_links != ''): ?>
+<nav>
+	<ul class="pagination pagination justify-content-center mt-3">
+		<li class="page-item disabled"><a class="page-link">Страницы</a></li>
+		<?=$pagination_links;?>
+	</ul>
+</nav>
+<? endif; ?>
+
 <div class="table-responsive mt-3">
 	<table class="table table-sm table-hover table-bordered">
 		<thead>
@@ -52,3 +61,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	<? endif; ?>
 </div>
+
+<? if ($pagination_links != ''): ?>
+<nav>
+	<ul class="pagination pagination justify-content-center mt-3">
+		<li class="page-item disabled"><a class="page-link">Страницы</a></li>
+		<?=$pagination_links;?>
+	</ul>
+</nav>
+<? endif; ?>
