@@ -46,6 +46,20 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 
 -- Экспортируемые данные не выделены.
 
+-- Дамп структуры для таблица kc_aspia_new.statistics_data
+CREATE TABLE IF NOT EXISTS `statistics_data` (
+  `stats_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stats_timestamp` timestamp NULL DEFAULT current_timestamp(),
+  `stats_query_ip` varchar(15) DEFAULT NULL,
+  `stats_query_packet` varchar(25) DEFAULT NULL,
+  `stats_query_version` varchar(10) DEFAULT NULL,
+  `stats_local_packet_id` varchar(10) DEFAULT NULL,
+  `stats_proposed_update_id` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`stats_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Экспортируемые данные не выделены.
+
 -- Дамп структуры для таблица kc_aspia_new.updates_data
 CREATE TABLE IF NOT EXISTS `updates_data` (
   `update_id` int(11) NOT NULL AUTO_INCREMENT,
