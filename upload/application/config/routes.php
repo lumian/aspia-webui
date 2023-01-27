@@ -52,3 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['auth'] = 'auth';
+$route['admin'] = 'admin';
+$route['installer'] = 'installer';
+$route['(:any)'] = 'update';
