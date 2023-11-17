@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS `installers_data` (
   `installer_id` int(11) NOT NULL AUTO_INCREMENT,
   `installer_name` varchar(50) DEFAULT NULL,
   `installer_description` varchar(250) DEFAULT NULL,
-  `installer_url` varchar(250) DEFAULT NULL,
   `installer_file_name` varchar(250) DEFAULT NULL,
   `installer_file_name_real` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`installer_id`)
