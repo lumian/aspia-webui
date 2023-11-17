@@ -8,7 +8,7 @@ class Aspia_model extends CI_Model {
 	//
 	function get_update_list()
 	{
-		$this->db->select('updates_data.*, packages_data.package_name, packages_data.package_description, installers_data.installer_name, installers_data.installer_url');
+		$this->db->select('updates_data.*, packages_data.package_name, packages_data.package_description, installers_data.installer_name, installers_data.installer_file_name_real');
 		$this->db->from('updates_data');
 		$this->db->join('packages_data', 'updates_data.package_id=packages_data.package_id');
 		$this->db->join('installers_data', 'updates_data.installer_id=installers_data.installer_id');

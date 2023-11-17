@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td><?=$update_info['update_source_version'];?></td>
 				<td><?=$update_info['update_description'];?></td>
 				<td>
-					<a href="<?=$update_info['installer_url'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>
+					<a href="<?=$this->config->item('storage_url', 'aspia').$update_info['installer_file_name_real'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>
 					<a href="#" class="me-2" title="Редактировать" data-bs-toggle="modal" data-bs-target="#ModalEditUpdate" data-bs-unitid="<?=$update_info['update_id'];?>"><i class="fa-solid fa-pen-to-square"></i></a>
 					<a href="#" class="me-2" title="Удалить" data-bs-toggle="modal" data-bs-target="#ModalDelUpdate" data-bs-unitid="<?=$update_info['update_id'];?>"><i class="fa-solid fa-trash"></i></a>
 				</td>
