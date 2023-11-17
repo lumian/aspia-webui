@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<th scope="col">Наименование</th>
 				<th scope="col">Описание</th>
-				<th scope="col">URL</th>
+				<th scope="col">Имя загруженного файла</th>
 				<th scope="col">Действия</th>
 			</tr>
 		</thead>
@@ -37,9 +37,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<td><?=$installer_info['installer_name'];?></td>
 				<td><?=$installer_info['installer_description'];?></td>
-				<td><?=$installer_info['installer_url'];?></td>
+				<td><?=$installer_info['installer_file_name_real'];?></td>
 				<td>
-					<a href="<?=$installer_info['installer_url'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>
+					<a href="<?=$this->config->item('storage_url', 'aspia').$installer_info['installer_file_name_real'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>
 					<a href="#" class="me-2" title="Редактировать" data-bs-toggle="modal" data-bs-target="#ModalEditInstaller" data-bs-unitid="<?=$installer_info['installer_id'];?>"><i class="fa-solid fa-pen-to-square"></i></a>
 					<a href="#" class="me-2" title="Удалить" data-bs-toggle="modal" data-bs-target="#ModalDelInstaller" data-bs-unitid="<?=$installer_info['installer_id'];?>"><i class="fa-solid fa-trash"></i></a>
 				</td>
@@ -63,18 +63,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="<?=base_url('admin/installers/add');?>" method="post" accept-charset="utf-8" id="ModalAddInstallerForm">
+				<form action="<?=base_url('admin/installers/add');?>" method="post" accept-charset="utf-8" id="ModalAddInstallerForm" enctype="multipart/form-data">
 					<div class="mb-3">
 						<label for="FormName" class="form-label">Название *</label>
 						<input type="text" class="form-control" id="FormName" name="installer_name" placeholder="Aspia Host v.2.5.0" required>
 					</div>
 					<div class="mb-3">
-						<label for="FormURL" class="form-label">URL *</label>
-						<input type="text" class="form-control" id="FormURL" name="installer_url" placeholder="<?=base_url('/aspia-host.msi');?>" required>
-					</div>
-					<div class="mb-3">
 						<label for="FormDescription" class="form-label">Описание</label>
 						<textarea class="form-control" id="FormDescription" name="installer_description" maxlength="250" rows="3" placeholder="Любое описание (отображается только в админке)"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="FormFile">Файл инсталлятора</label>
+						<input class="form-control" type="file" id="FormFile" name="installer_file" required>
+						<small id="FormFileHelp" class="text-muted">Максимальный размер файла: <?=$this->aspia->max_size_upload('MB');?> Mb</small>
 					</div>
 				</form>
 			</div>
@@ -98,10 +99,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="mb-3">
 						<label for="FormName" class="form-label">Название *</label>
 						<input type="text" class="form-control" id="FormName" name="installer_name" placeholder="Aspia Host v.2.5.0" required>
-					</div>
-					<div class="mb-3">
-						<label for="FormURL" class="form-label">URL *</label>
-						<input type="text" class="form-control" id="FormURL" name="installer_url" placeholder="<?=base_url('/aspia-host.msi');?>" required>
 					</div>
 					<div class="mb-3">
 						<label for="FormDescription" class="form-label">Описание</label>

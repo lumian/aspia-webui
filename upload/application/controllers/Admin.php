@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
 		{
 			$this->user_info = $this->session->userdata();
 			$this->load->model('aspia_model');
+			$this->load->library('aspia');
 		}
 		else
 		{
@@ -271,39 +272,59 @@ class Admin extends CI_Controller {
 		{
 			if (count($this->input->post()) > 0)
 			{
-				$post_data = array(
-					'installer_name'			=> htmlspecialchars($this->input->post('installer_name', TRUE)),
-					'installer_description'		=> htmlspecialchars($this->input->post('installer_description', TRUE)),
-					'installer_url'				=> htmlspecialchars($this->input->post('installer_url', TRUE))
+				$upload_config = array(
+					'upload_path'		=> $this->config->item('storage_path', 'aspia'),
+					'allowed_types'		=> 'msi',
+					'max_size'			=> $this->aspia->max_size_upload(),
+					'encrypt_name'		=> TRUE
 				);
 				
-				if (!is_null($post_data['installer_name']) AND !is_null($post_data['installer_url']))
+				$this->load->library('upload', $upload_config);
+				
+				if ($this->upload->do_upload('installer_file'))
 				{
-					if (is_array($this->aspia_model->get_installer_info('name', $post_data['installer_name'])))
+					$upload_data = $this->upload->data();
+					
+					$post_data = array(
+						'installer_name'			=> htmlspecialchars($this->input->post('installer_name', TRUE)),
+						'installer_description'		=> htmlspecialchars($this->input->post('installer_description', TRUE)),
+						'installer_file_name'		=> $upload_data['orig_name'],
+						'installer_file_name_real'	=> $upload_data['file_name']
+					);
+					
+					if (!is_null($post_data['installer_name']) AND !is_null($post_data['installer_file_name']))
 					{
-						$this->session->set_flashdata('notice_success', FALSE);
-						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных. Такое имя инсталлятора уже есть в базе. Проверьте ввод и повторите попытку.');
-					}
-					else
-					{
-						$query = $this->aspia_model->add_installer($post_data);
-						
-						if ($query != FALSE)
+						if (is_array($this->aspia_model->get_installer_info('name', $post_data['installer_name'])))
 						{
-							$this->session->set_flashdata('notice_success', 'Инсталлятор успешно добавлен в базу данных.');
-							$this->session->set_flashdata('notice_error', FALSE);
+							$this->session->set_flashdata('notice_success', FALSE);
+							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных. Такое имя инсталлятора уже есть в базе. Проверьте ввод и повторите попытку.');
 						}
 						else
 						{
-							$this->session->set_flashdata('notice_success', FALSE);
-							$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных.');
+							$query = $this->aspia_model->add_installer($post_data);
+							
+							if ($query != FALSE)
+							{
+								$this->session->set_flashdata('notice_success', 'Инсталлятор успешно добавлен в базу данных.');
+								$this->session->set_flashdata('notice_error', FALSE);
+							}
+							else
+							{
+								$this->session->set_flashdata('notice_success', FALSE);
+								$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных.');
+							}
 						}
+					}
+					else
+					{
+						$this->session->set_flashdata('notice_success', FALSE);
+						$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных. Не переданы обязательные поля.');
 					}
 				}
 				else
 				{
 					$this->session->set_flashdata('notice_success', FALSE);
-					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных. Не переданы обязательные поля.');
+					$this->session->set_flashdata('notice_error', 'Произошла ошибка. Инсталлятор не добавлен в базу данных.'.$this->upload->display_errors());
 				}
 				redirect('admin/installers');
 			}
@@ -319,10 +340,9 @@ class Admin extends CI_Controller {
 				$post_data = array(
 					'installer_name'			=> htmlspecialchars($this->input->post('installer_name', TRUE)),
 					'installer_description'		=> htmlspecialchars($this->input->post('installer_description', TRUE)),
-					'installer_url'				=> htmlspecialchars($this->input->post('installer_url', TRUE))
 				);
 				
-				if (!is_null($post_data['installer_name']) AND !is_null($post_data['installer_url']))
+				if (!is_null($post_data['installer_name']))
 				{
 					$check = $this->aspia_model->get_installer_info('name', $post_data['installer_name']);
 
@@ -374,8 +394,10 @@ class Admin extends CI_Controller {
 				else
 				{
 					$result = $this->aspia_model->del_installer($unit);
+					
 					if ($result)
 					{
+						unlink($this->config->item('storage_path', 'aspia').$installer_info['installer_file_name_real']);
 						$this->session->set_flashdata('notice_success', 'Инсталлятор успешно удален.');
 						$this->session->set_flashdata('notice_error', FALSE);
 					}
