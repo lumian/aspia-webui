@@ -101,7 +101,7 @@ class Aspia_model extends CI_Model {
 	{
 		if (!is_null($packet_id) AND is_numeric($packet_id) AND !is_null($source_version) AND is_string($source_version))
 		{
-			$this->db->select('updates_data.*, installers_data.installer_url');
+			$this->db->select('updates_data.*, installers_data.installer_file_name_real');
 			$this->db->join('installers_data', 'updates_data.installer_id=installers_data.installer_id');
 			$this->db->where('package_id', $packet_id);
 			$this->db->where('update_source_version', $source_version);

@@ -43,7 +43,7 @@ class Update extends CI_Controller {
 					
 					$xml->addChild('version', $update_info['update_target_version']);
 					$xml->addChild('description', $update_info['update_description']);
-					$xml->addChild('url', $update_info['installer_url']);
+					$xml->addChild('url', $this->config->item('storage_url', 'aspia').$update_info['installer_file_name_real']);
 				}
 				
 				$stats_query = $this->aspia_model->add_statistics($stats_data);
