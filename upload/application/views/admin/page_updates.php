@@ -40,8 +40,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<thead>
 			<tr>
 				<th scope="col">Пакет</th>
-				<th scope="col">Версия обновления</th>
-				<th scope="col">Исходная версия</th>
+				<th scope="col">Версия</th>
+				<th scope="col"><abbr title="Операционная система">ОС</abbr></th>
+				<th scope="col"><abbr title="Архитектура процессора">Арх</abbr></th>
+				
 				<th scope="col">Описание</th>
 				<th scope="col">Действия</th>
 			</tr>
@@ -51,8 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<? foreach ($updates_data as $update_id => $update_info): ?>
 			<tr>
 				<td><?=$update_info['package_name'];?> <?=($update_info['package_description'] != '') ? '('.$update_info['package_description'].')' : '';?></td>
-				<td><?=$update_info['update_target_version'];?></td>
-				<td><?=$update_info['update_source_version'];?></td>
+				<td><?=$update_info['update_source_version'];?> => <?=$update_info['update_target_version'];?></td>
+				<td><?=$update_info['installer_os'];?></td>
+				<td><?=$update_info['installer_arch'];?></td>
 				<td><?=$update_info['update_description'];?></td>
 				<td>
 					<a href="<?=$this->config->item('storage_url', 'aspia').$update_info['installer_file_name_real'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>

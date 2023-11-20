@@ -14,5 +14,10 @@ $config['aspia']['storage_path']				= './storage/';
 // URL адрес, по которому доступна директория по протоколу HTTPS с завершающим '/'
 $config['aspia']['storage_url']					= 'https://'.$_SERVER['HTTP_HOST'].'/storage/';
 
+// Список поддерживаемых инсталляторов
+$config['aspia']['support_os']					= array('windows'); // Доступные ОС, в формате массива
+$config['aspia']['support_arch']				= array('x86'); // Доступные архитектуры, в формате массива
+$config['aspia']['support_extensions']			= 'msi'; // Доступные расширения файлов инсталляторов в формате: 'ext|ext|ext'
+
 // Флаг установленной системы (TRUE - установлена / FALSE - не установлена)
 $config['aspia']['system_installed']			= FALSE;

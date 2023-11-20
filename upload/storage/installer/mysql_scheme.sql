@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS `installers_data` (
   `installer_id` int(11) NOT NULL AUTO_INCREMENT,
   `installer_name` varchar(50) DEFAULT NULL,
   `installer_description` varchar(250) DEFAULT NULL,
+  `installer_os` varchar(250) DEFAULT NULL,
+  `installer_arch` varchar(250) DEFAULT NULL,
   `installer_file_name` varchar(250) DEFAULT NULL,
   `installer_file_name_real` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`installer_id`)
@@ -36,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `statistics_data` (
   `stats_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `stats_query_ip` varchar(15) DEFAULT NULL,
   `stats_query_packet` varchar(25) DEFAULT NULL,
+  `stats_query_os` varchar(50) DEFAULT NULL,
+  `stats_query_arch` varchar(50) DEFAULT NULL,
   `stats_query_version` varchar(10) DEFAULT NULL,
   `stats_local_packet_id` varchar(10) DEFAULT NULL,
   `stats_proposed_update_id` varchar(10) DEFAULT NULL,

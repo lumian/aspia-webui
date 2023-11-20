@@ -8,7 +8,7 @@ class Aspia_model extends CI_Model {
 	//
 	function get_update_list()
 	{
-		$this->db->select('updates_data.*, packages_data.package_name, packages_data.package_description, installers_data.installer_name, installers_data.installer_file_name_real');
+		$this->db->select('updates_data.*, packages_data.package_name, packages_data.package_description, installers_data.installer_name, installers_data.installer_file_name_real, installers_data.installer_os, installers_data.installer_arch');
 		$this->db->from('updates_data');
 		$this->db->join('packages_data', 'updates_data.package_id=packages_data.package_id');
 		$this->db->join('installers_data', 'updates_data.installer_id=installers_data.installer_id');
@@ -97,14 +97,16 @@ class Aspia_model extends CI_Model {
 		}
 	}
 	
-	function get_update_check($packet_id=NULL, $source_version=NULL)
+	function get_update_check($packet_id=NULL, $source_version=NULL, $os=NULL, $arch=NULL)
 	{
-		if (!is_null($packet_id) AND is_numeric($packet_id) AND !is_null($source_version) AND is_string($source_version))
+		if (!is_null($packet_id) AND is_numeric($packet_id) AND !is_null($source_version) AND is_string($source_version) AND !is_null($os) AND is_string($os) AND !is_null($arch) AND is_string($arch))
 		{
-			$this->db->select('updates_data.*, installers_data.installer_file_name_real');
+			$this->db->select('updates_data.*, installers_data.*');
 			$this->db->join('installers_data', 'updates_data.installer_id=installers_data.installer_id');
 			$this->db->where('package_id', $packet_id);
 			$this->db->where('update_source_version', $source_version);
+			$this->db->where('installer_os', $os);
+			$this->db->where('installer_arch', $arch);
 			$this->db->from('updates_data');
 			$query = $this->db->get()->result_array();
 			

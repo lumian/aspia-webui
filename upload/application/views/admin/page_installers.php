@@ -27,6 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<th scope="col">Наименование</th>
 				<th scope="col">Описание</th>
+				<th scope="col">ОС</th>
+				<th scope="col">Архитектура</th>
 				<th scope="col">Имя загруженного файла</th>
 				<th scope="col">Действия</th>
 			</tr>
@@ -37,6 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<td><?=$installer_info['installer_name'];?></td>
 				<td><?=$installer_info['installer_description'];?></td>
+				<td><?=$installer_info['installer_os'];?></td>
+				<td><?=$installer_info['installer_arch'];?></td>
 				<td><?=$installer_info['installer_file_name_real'];?></td>
 				<td>
 					<a href="<?=$this->config->item('storage_url', 'aspia').$installer_info['installer_file_name_real'];?>" class="me-2" title="Скачать"><i class="fa-solid fa-download"></i></a>
@@ -71,6 +75,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="mb-3">
 						<label for="FormDescription" class="form-label">Описание</label>
 						<textarea class="form-control" id="FormDescription" name="installer_description" maxlength="250" rows="3" placeholder="Любое описание (отображается только в админке)"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="FormOS" class="form-label">Операционная система *</label>
+						<select class="form-select" id="FormOS" name="installer_os" required>
+							<? foreach($support_os as $os): ?>
+								<option value="<?=$os;?>"><?=$os;?></option>
+							<? endforeach;?>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="FormArch" class="form-label">Архитектура *</label>
+						<select class="form-select" id="FormArch" name="installer_arch" required>
+							<? foreach($support_arch as $arch): ?>
+								<option value="<?=$arch;?>"><?=$arch;?></option>
+							<? endforeach;?>
+						</select>
 					</div>
 					<div class="mb-3">
 						<label for="FormFile">Файл инсталлятора</label>

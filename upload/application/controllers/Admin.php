@@ -98,8 +98,7 @@ class Admin extends CI_Controller {
 					$output_json_data = array(
 						'installer_id'				=> htmlspecialchars_decode($installer_info['installer_id']),
 						'installer_name'			=> htmlspecialchars_decode($installer_info['installer_name']),
-						'installer_description'		=> htmlspecialchars_decode($installer_info['installer_description']),
-						'installer_url'				=> htmlspecialchars_decode($installer_info['installer_url'])
+						'installer_description'		=> htmlspecialchars_decode($installer_info['installer_description'])
 					);
 				}
 				else
@@ -264,7 +263,9 @@ class Admin extends CI_Controller {
 		if (is_null($type))
 		{
 			$page_data = array(
-				'installers_data'		=> $this->aspia_model->get_installer_list()
+				'installers_data'		=> $this->aspia_model->get_installer_list(),
+				'support_os'			=> $this->config->item('support_os', 'aspia'),
+				'support_arch'			=> $this->config->item('support_arch', 'aspia')
 			);
 			$this->content = $this->load->view('admin/page_installers', $page_data, TRUE);
 		}
@@ -274,7 +275,7 @@ class Admin extends CI_Controller {
 			{
 				$upload_config = array(
 					'upload_path'		=> $this->config->item('storage_path', 'aspia'),
-					'allowed_types'		=> 'msi',
+					'allowed_types'		=> $this->config->item('support_extensions', 'aspia'),
 					'max_size'			=> $this->aspia->max_size_upload(),
 					'encrypt_name'		=> TRUE
 				);
@@ -289,10 +290,12 @@ class Admin extends CI_Controller {
 						'installer_name'			=> htmlspecialchars($this->input->post('installer_name', TRUE)),
 						'installer_description'		=> htmlspecialchars($this->input->post('installer_description', TRUE)),
 						'installer_file_name'		=> $upload_data['orig_name'],
-						'installer_file_name_real'	=> $upload_data['file_name']
+						'installer_file_name_real'	=> $upload_data['file_name'],
+						'installer_arch'			=> htmlspecialchars($this->input->post('installer_arch', TRUE)),
+						'installer_os'				=> htmlspecialchars($this->input->post('installer_os', TRUE)),
 					);
 					
-					if (!is_null($post_data['installer_name']) AND !is_null($post_data['installer_file_name']))
+					if (!is_null($post_data['installer_name']) AND !is_null($post_data['installer_file_name']) AND !is_null($post_data['installer_arch']) AND !is_null($post_data['installer_os']))
 					{
 						if (is_array($this->aspia_model->get_installer_info('name', $post_data['installer_name'])))
 						{
