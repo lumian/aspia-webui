@@ -85,6 +85,8 @@ class Installer extends CI_Controller {
 			
 			// System settings
 			$default_value['system_domain']			= $this->input->server('HTTP_HOST', TRUE);
+			$default_value['storage_path']			= './storage/';
+			$default_value['storage_url']			= 'https://'.$this->input->server('HTTP_HOST', TRUE).'/storage/';
 			
 			// Database settings
 			$default_value['database_hostname']		= 'localhost';
@@ -127,7 +129,9 @@ class Installer extends CI_Controller {
 					$config_aspia_array = file($check_files['config_aspia']);
 					$config_aspia_replace = array(
 						'login'				=> $input_settings['admin_login'],
-						'password'			=> $input_settings['admin_password']
+						'password'			=> $input_settings['admin_password'],
+						'storage_path'		=> $input_settings['storage_path'],
+						'storage_url'		=> $input_settings['storage_url']
 					);
 					
 					$config_aspia_result = $this->config_strings_replace($config_aspia_array, $config_aspia_replace);

@@ -7,6 +7,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `installers_data`;
 CREATE TABLE IF NOT EXISTS `installers_data` (
   `installer_id` int(11) NOT NULL AUTO_INCREMENT,
   `installer_name` varchar(50) DEFAULT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE IF NOT EXISTS `installers_data` (
   PRIMARY KEY (`installer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `packages_data`;
 CREATE TABLE IF NOT EXISTS `packages_data` (
   `package_id` int(11) NOT NULL AUTO_INCREMENT,
   `package_name` varchar(50) DEFAULT NULL,
@@ -25,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `packages_data` (
   PRIMARY KEY (`package_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(128) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
@@ -33,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `ci_sessions_timestamp` (`timestamp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `statistics_data`;
 CREATE TABLE IF NOT EXISTS `statistics_data` (
   `stats_id` int(11) NOT NULL AUTO_INCREMENT,
   `stats_timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -46,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `statistics_data` (
   PRIMARY KEY (`stats_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS `updates_data`;
 CREATE TABLE IF NOT EXISTS `updates_data` (
   `update_id` int(11) NOT NULL AUTO_INCREMENT,
   `package_id` int(11) DEFAULT NULL,

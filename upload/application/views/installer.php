@@ -105,6 +105,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<input type="text" name="system_domain" class="form-control" id="system_domain" value="<?=$content['post_data']['system_domain'];?>" required>
 									</div>
 								</div>
+								<div class="row mt-2">
+									<label for="storage_path" class="col-sm-3 col-form-label">Путь до хранилища</label>
+									<div class="col-sm-9">
+										<input type="text" name="storage_path" class="form-control" id="storage_path" value="<?=$content['post_data']['storage_path'];?>" required>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<label for="storage_url" class="col-sm-3 col-form-label">URL до хранилища</label>
+									<div class="col-sm-9">
+										<input type="text" name="storage_url" class="form-control" id="storage_url" value="<?=$content['post_data']['storage_url'];?>" required>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
