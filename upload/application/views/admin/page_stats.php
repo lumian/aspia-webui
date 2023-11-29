@@ -18,7 +18,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<tr>
 				<th scope="col">Дата и время</th>
 				<th scope="col">IP клиента</th>
-				<th scope="col">Запрошенный компонент</th>
+				<th scope="col">Компонент</th>
+				<th scope="col">ОС</th>
+				<th scope="col">Арх</th>
 				<th scope="col">Исходная версия</th>
 				<th scope="col">Предложенное обновление</th>
 			</tr>
@@ -38,6 +40,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<span class="text-danger">(не поддерживается)</span>
 					<? endif; ?>
 				</td>
+				<td><?=$stats_info['stats_query_os'];?></td>
+				<td><?=$stats_info['stats_query_arch'];?></td>
 				<td><?=$stats_info['stats_query_version'];?></td>
 				<td>
 					<? if (isset($updates_data[$stats_info['stats_proposed_update_id']])) :?>
