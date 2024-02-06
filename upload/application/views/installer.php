@@ -231,7 +231,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		</main>
 		<footer class="pt-2 my-3 text-muted border-top">
-			<span class="text-muted"><a href="<?=$this->config->item('link_author', 'aspia');?>" target="_blank"><?=$this->config->item('site_title', 'aspia');?></a> &copy; 2022-2023</span>
+			<span class="text-muted"><a href="<?=$this->config->item('link_author', 'aspia');?>" target="_blank"><?=$this->config->item('site_title', 'aspia');?></a> &copy; 2022-2024</span>
 		</footer>
 	</div>
 </body>
