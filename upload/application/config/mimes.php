@@ -181,5 +181,7 @@ return array(
 	'odm'	=>	'application/vnd.oasis.opendocument.text-master',
 	'ott'	=>	'application/vnd.oasis.opendocument.text-template',
 	'oth'	=>	'application/vnd.oasis.opendocument.text-web',
-	'msi'	=>  array('application/x-msdownload', 'application/cdfv2')
+	'msi'	=>	array('application/x-msdownload', 'application/cdfv2', 'application/x-msi'),
+	'deb'	=>	'application/vnd.debian.binary-package',
+	'dmg'	=>	'application/x-apple-diskimage'
 );
