@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td><?=$stats_info['stats_timestamp'];?></td>
 				<td>
 					<?=$stats_info['stats_query_ip'];?>
-					<a href="https://whois7.ru/?q=<?=$stats_info['stats_query_ip'];?>" target="_blank" title="Посмотреть Whois через WhoIs7.Ru"><i class="fa-solid fa-globe"></i></a>
+					<a href="https://whois.ru/<?=$stats_info['stats_query_ip'];?>" target="_blank" title="Посмотреть Whois через WhoIs.Ru"><i class="fa-solid fa-globe"></i></a>
 				</td>
 				<td>
 					<?=$stats_info['stats_query_packet'];?> 
